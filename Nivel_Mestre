@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAMANHO 10
+#define TAMANHO_HABILIDADE 5
+
+void aplicarHabilidade(int tabuleiro[TAMANHO][TAMANHO], int origemX, int origemY, int tipo) {
+    for (int i = 0; i < TAMANHO_HABILIDADE; i++) {
+        for (int j = 0; j < TAMANHO_HABILIDADE; j++) {
+            int dx = i - TAMANHO_HABILIDADE / 2;
+            int dy = j - TAMANHO_HABILIDADE / 2;
+            int x = origemX + dx;
+            int y = origemY + dy;
+
+            if (x >= 0 && x < TAMANHO && y >= 0 && y < TAMANHO) {
+                int aplicar = 0;
+
+                if (tipo == 1 && abs(dx) <= dy && dy >= 0) aplicar = 1; // Cone
+                else if (tipo == 2 && (dx == 0 || dy == 0)) aplicar = 1; // Cruz
+                else if (tipo == 3 && abs(dx) + abs(dy) <= TAMANHO_HABILIDADE / 2) aplicar = 1; // Octaedro
+
+                if (aplicar && tabuleiro[x][y] == 0) {
+                    tabuleiro[x][y] = 5;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int tabuleiro[TAMANHO][TAMANHO] = {0};
+
+    // Exemplo de navio
+    tabuleiro[2][2] = 3;
+    tabuleiro[2][3] = 3;
+    tabuleiro[2][4] = 3;
+
+    // Aplicar habilidades
+    aplicarHabilidade(tabuleiro, 4, 4, 1); // Cone
+    aplicarHabilidade(tabuleiro, 7, 2, 2); // Cruz
+    aplicarHabilidade(tabuleiro, 6, 6, 3); // Octaedro
+
+    // Exibir tabuleiro
+    printf("Tabuleiro - Nível Mestre:\n");
+    for (int i = 0; i < TAMANHO; i++) {
+        for (int j = 0; j < TAMANHO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+
+#define TAMANHO 10
+#define TAMANHO_HABILIDADE 5
+
+void aplicarHabilidade(int tabuleiro[TAMANHO][TAMANHO], int origemX, int origemY, int tipo) {
+    for (int i = 0; i < TAMANHO_HABILIDADE; i++) {
+        for (int j = 0; j < TAMANHO_HABILIDADE; j++) {
+            int dx = i - TAMANHO_HABILIDADE / 2;
+            int dy = j - TAMANHO_HABILIDADE / 2;
+            int x = origemX + dx;
+            int y = origemY + dy;
+
+            if (x >= 0 && x < TAMANHO && y >= 0 && y < TAMANHO) {
+                int aplicar = 0;
+
+                if (tipo == 1 && abs(dx) <= dy && dy >= 0) aplicar = 1; // Cone
+                else if (tipo == 2 && (dx == 0 || dy == 0)) aplicar = 1; // Cruz
+                else if (tipo == 3 && abs(dx) + abs(dy) <= TAMANHO_HABILIDADE / 2) aplicar = 1; // Octaedro
+
+                if (aplicar && tabuleiro[x][y] == 0) {
+                    tabuleiro[x][y] = 5;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int tabuleiro[TAMANHO][TAMANHO] = {0};
+
+    // Exemplo de navio
+    tabuleiro[2][2] = 3;
+    tabuleiro[2][3] = 3;
+    tabuleiro[2][4] = 3;
+
+    // Aplicar habilidades
+    aplicarHabilidade(tabuleiro, 4, 4, 1); // Cone
+    aplicarHabilidade(tabuleiro, 7, 2, 2); // Cruz
+    aplicarHabilidade(tabuleiro, 6, 6, 3); // Octaedro
+
+    // Exibir tabuleiro
+    printf("Tabuleiro - Nível Mestre:\n");
+    for (int i = 0; i < TAMANHO; i++) {
+        for (int j = 0; j < TAMANHO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
